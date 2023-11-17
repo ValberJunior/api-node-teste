@@ -86,7 +86,7 @@ jobs:
           --annotation "konghq.com/protocols"="https" \
           --annotation "sidecar.opentelemetry.io/inject"="true" \
           --annotation "instrumentation.opentelemetry.io/inject-java"="true" \
-          --rule="rest.apr.vee.codes/api-node-teste*=api-node-teste-service-0:,tls=rest.apr.vee.codes-tls" --dry-run=client -o=yaml > ./k8s/ingress.yaml
+          --rule="rest.apr.vee.codes/api-node-teste*=api-node-teste-service-0:5000,tls=rest.apr.vee.codes-tls" --dry-run=client -o=yaml > ./k8s/ingress.yaml
           yq e 'del(.metadata.creationTimestamp) | del(.status)' -i ./k8s/ingress.yaml
           yq e '.metadata.labels."backstage.io/kubernetes-id"="api-node-teste"' -i ./k8s/ingress.yaml
 
