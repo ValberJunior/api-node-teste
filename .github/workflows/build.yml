@@ -55,7 +55,7 @@ jobs:
           mkdir k8s/
           mkdir config/
           touch config/api-node-teste.yaml
-          kubectl create deployment api-node-teste --namespace=vkpr --port= --replicas=1 \
+          kubectl create deployment api-node-teste --namespace=vkpr --port=5000 --replicas=1 \
           --image=docker.io/valberjunior/${{ env.name }}:${{ env.version }} --dry-run=client -o=yaml > ./k8s/deployment.yaml
           yq e '''
           .metadata.labels."backstage.io/kubernetes-id"= "api-node-teste" |
