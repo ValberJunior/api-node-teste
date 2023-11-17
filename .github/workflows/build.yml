@@ -17,6 +17,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Get Values
+        env:
+          NAME: ""
+          VERSION: ""
         run: |
           jq '.name' package.json >>NAME
           jq '.version' package.json >> VERSION
@@ -98,6 +101,7 @@ jobs:
               .spec.destination.namespace="vkpr"''' -i config/api-node-teste.yaml
 
   publish-spec:
+    needs: build
     runs-on: ubuntu-latest
     env:
       MOCK_SERVER: ""
