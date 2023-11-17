@@ -18,8 +18,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Get Values
         env:
-          NAME: ""
-          VERSION: ""
+          NAME: "api-node-teste"
+          VERSION: "latest"
         run: |
           jq -r '.name' package.json >>NAME
           echo $NAME
