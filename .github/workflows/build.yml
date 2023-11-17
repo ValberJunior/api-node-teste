@@ -22,7 +22,9 @@ jobs:
           VERSION: ""
         run: |
           jq '.name' package.json >>NAME
+          echo $NAME
           jq '.version' package.json >> VERSION
+          echo $VERSION
           echo "name=$NAME" >> $GITHUB_ENV 
           echo "version=$VERSION" >> $GITHUB_ENV 
 
