@@ -18,12 +18,13 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Get Values
         env:
-          NAME: "api-node-teste"
-          VERSION: "latest"
+          NAME: ""
+          VERSION: ""
         run: |
           ls -ltrh
           NAME=`jq -r '.name' package.json`          
           VERSION=`jq -r '.version' package.json`
+          echo $NAME
           echo $VERSION
           echo "name=$NAME" >> $GITHUB_ENV 
           echo "version=$VERSION" >> $GITHUB_ENV 
