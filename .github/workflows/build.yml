@@ -21,9 +21,9 @@ jobs:
           NAME: "api-node-teste"
           VERSION: "latest"
         run: |
-          jq -r '.name' package.json >>NAME
-          echo $NAME
-          jq -r '.version' package.json >> VERSION
+          ls -ltrh
+          NAME=`jq -r '.name' package.json`          
+          VERSION=`jq -r '.version' package.json`
           echo $VERSION
           echo "name=$NAME" >> $GITHUB_ENV 
           echo "version=$VERSION" >> $GITHUB_ENV 
