@@ -1,0 +1,8 @@
+site_name: "api-node-teste"
+site_description: "Teste de Template"
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core
