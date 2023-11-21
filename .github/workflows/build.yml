@@ -160,6 +160,7 @@ jobs:
           yq eval ".spec.type = \"openapi\"" -i "api/$NAME.yaml"
           yq eval ".spec.lifecycle = \"production\"" -i "api/$NAME.yaml"
           yq eval ".spec.owner = \"consumer\"" -i "api/$NAME.yaml"
+          cat "api/$NAME.yaml"
           
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
