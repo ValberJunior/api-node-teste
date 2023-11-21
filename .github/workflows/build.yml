@@ -10,12 +10,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
       - name: Get Values
         env:
           NAME: ""
@@ -167,16 +161,15 @@ jobs:
           yq eval ".spec.type = \"openapi\"" -i "api/$NAME.yaml"
           yq eval ".spec.lifecycle = \"production\"" -i "api/$NAME.yaml"
           yq eval ".spec.owner = \"consumer\"" -i "api/$NAME.yaml"
-          yq eval ".spec.definition = \"$(yq -I4 ./openapi-swagger.yaml)\"" --inplace "api/$NAME.yaml"
-
-      - name: Publish to spec house
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          destination_branch: 
-          source_file:  'api'
-          destination_repo: 
-          destination_folder: '/'
-          user_name: ${{ github.actor }}
-          commit_message: 'Pipeline commit'    
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          
+      - name: Vkpr apply
+        run: |
+          aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME}} --region ${{ secrets.AWS_REGION }}
+          kubectl apply -f ./api 
