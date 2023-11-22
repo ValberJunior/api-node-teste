@@ -134,6 +134,7 @@ jobs:
           .spec.template.metadata.annotations."instrumentation.opentelemetry.io/inject-java"= "true" |
           del(.status) | del(.metadata.creationTimestamp) | del(.spec.template.metadata.creationTimestamp) | del(.spec.strategy)
           ''' -i ./k8s/deployment.yaml
+          cat ./k8s/deployment.yaml
 
           kubectl create service clusterip api-node-teste-service-0 --namespace=vkpr \
           --tcp=5000:5000 --dry-run=client -o=yaml > ./k8s/service.yaml
@@ -143,6 +144,7 @@ jobs:
           del(.metadata.creationTimestamp) | del(.status) |
           .metadata.labels."backstage.io/kubernetes-id"="api-node-teste"''' -i ./k8s/service.yaml
           yq e '.spec.selector.app="api-node-teste"' -i ./k8s/service.yaml
+          cat ./k8s/deployment.yaml
 
           kubectl create ingress api-node-teste --class=kong --namespace=vkpr \
           --annotation "cert-manager.io/cluster-issuer"="certmanager-issuer" \
@@ -156,7 +158,8 @@ jobs:
           --rule="rest.apr.vee.codes/api-node-teste*=api-node-teste-service-0:5000,tls=rest.apr.vee.codes-tls" --dry-run=client -o=yaml > ./k8s/ingress.yaml
           yq e 'del(.metadata.creationTimestamp) | del(.status)' -i ./k8s/ingress.yaml
           yq e '.metadata.labels."backstage.io/kubernetes-id"="api-node-teste"' -i ./k8s/ingress.yaml
-
+          cat ./k8s/ingress.yaml
+          
           yq e '''
               .apiVersion="argoproj.io/v1alpha1" |
               .kind="Application" |
@@ -169,7 +172,7 @@ jobs:
               .spec.syncPolicy.automated.prune=true |
               .spec.destination.server="https://kubernetes.default.svc" |
               .spec.destination.namespace="vkpr"''' -i config/api-node-teste.yaml
-          
+          cat ./config/api-node-teste.yaml
       - name: k8s apply
         run: |
           aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME}} --region ${{ secrets.AWS_REGION }}
