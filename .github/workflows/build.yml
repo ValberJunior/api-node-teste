@@ -60,6 +60,19 @@ jobs:
           chmod a+x /usr/local/bin/yq
           yq --version
 
+      - name: Get Values
+        env:
+          NAME: ""
+          VERSION: ""
+        run: |
+          ls -ltrh
+          NAME=`jq -r '.name' package.json`          
+          VERSION=`jq -r '.version' package.json`
+          echo $NAME
+          echo $VERSION
+          echo "name=$NAME" >> $GITHUB_ENV 
+          echo "version=$VERSION" >> $GITHUB_ENV 
+          
       - name: "Check if insomnia workspace is present"
         id: check_inso_workspace
         uses: andstor/file-existence-action@v1
