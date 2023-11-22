@@ -157,7 +157,7 @@ jobs:
           del(.metadata.creationTimestamp) | del(.status) |
           .metadata.labels."backstage.io/kubernetes-id"="api-node-teste"''' -i ./k8s/service.yaml
           yq e '.spec.selector.app="api-node-teste"' -i ./k8s/service.yaml
-          cat ./k8s/deployment.yaml
+          cat ./k8s/service.yaml
 
           kubectl create ingress api-node-teste --class=kong --namespace=vkpr \
           --annotation "cert-manager.io/cluster-issuer"="certmanager-issuer" \
