@@ -4,8 +4,15 @@ metadata:
   name: "api-node-teste"
   description: The place to be, for great node component
   labels:
-    example.com/custom: 'custom_label_value'
-    publishedAt: '2024-04-15 17:48:24'
+    - example.com/custom: 'custom_label_value'
+    - publishedAt: '2024-04-15 17:48:24'
+  links:
+    - title: Website
+      url: https://www.globo.com/
+    - title: Documentation
+      url: https://backstage.io/docs
+    - title: Storybook
+      url: https://backstage.io/storybook
   annotations:
     github.com/project-slug: ValberJunior/api-node-teste
     backstage.io/techdocs-ref: dir:.
