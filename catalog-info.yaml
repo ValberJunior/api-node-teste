@@ -2,9 +2,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: "api-node-teste"
-  description: "Teste de Template"
+  description: The place to be, for great node component
   labels:
-    publishedAt: 2024-04-15 17:48:24
+    example.com/custom: 'custom_label_value'
+    publishedAt: '2024-04-15 17:48:24'
   annotations:
     github.com/project-slug: ValberJunior/api-node-teste
     backstage.io/techdocs-ref: dir:.
