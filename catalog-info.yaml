@@ -4,7 +4,7 @@ metadata:
   name: "api-node-teste"
   description: The place to be, for great node component
   labels:
-    example.com/custom: 'custom_label_value'
+    example.com/custom: '2024-04-15 17:48:24'
   #  - publishedAt: '2024-04-15 17:48:24'
   annotations:
     github.com/project-slug: ValberJunior/api-node-teste
