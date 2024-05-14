@@ -1,7 +1,10 @@
 name: deploy 
 on:
   workflow_dispatch:
-
+    inputs:
+      environment:
+        required: false
+        type: environment
 jobs:
   build:
     runs-on: ubuntu-latest
