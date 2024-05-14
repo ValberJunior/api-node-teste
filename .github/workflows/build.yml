@@ -5,6 +5,7 @@ on:
       environment:
         required: false
         type: environment
+        default: 'teste'
 jobs:
   build:
     runs-on: ubuntu-latest
