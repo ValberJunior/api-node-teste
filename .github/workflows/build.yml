@@ -6,6 +6,28 @@ on:
         required: false
         type: environment
         default: 'teste'
+      selection:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
+        default: 'monalisa'
+      use-emoji:
+        type: boolean
+        description: Include 🎉🤣 emojis
+        default: true
+        required: false
+      number:
+        type: number
+        description: The number
+        required: false
+        default: '3548'
+      text:
+        type: string
+        description: String for test
+        required: true
+        default: 'login teste'
 jobs:
   build:
     runs-on: ubuntu-latest
