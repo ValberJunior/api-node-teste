@@ -3,9 +3,6 @@ kind: Component
 metadata:
   name: "api-node-teste"
   description: The place to be, for great node component
-  labels:
-    publishedAt: "2024-04-15"
-  #  - publishedAt: '2024-04-15 17:48:24'
   annotations:
     github.com/project-slug: ValberJunior/api-node-teste
     backstage.io/techdocs-ref: dir:.
