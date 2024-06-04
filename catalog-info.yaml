@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: "api-node-teste"
   description: The place to be, for great node component
+  environments:
+    subnets: ["subnetxpto","subnetxyz","subnetefla"]
   annotations:
     github.com/project-slug: ValberJunior/api-node-teste
     backstage.io/techdocs-ref: dir:.
