@@ -1,11 +1,6 @@
 name: deploy 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        required: false
-        type: environment
-        default: 'teste'
         
 jobs:
   build:
